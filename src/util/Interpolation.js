@@ -38,34 +38,64 @@ class AngleInterpolator extends Interpolator {
     }
 
     load(previousJointFrame, nextJointFrame) {
-        this.movePerFrame = (previousJointFrame.angleToFather - nextJointFrame.angleToFather) / this.frameDifference;
-        console.log("WILL MOVE "+this.movePerFrame);
+
+        const oldFather = this.frameArray[this.frameNumber1].findJoint(previousJointFrame.fatherJointName);
+        const newFather = this.frameArray[this.frameNumber2].findJoint(nextJointFrame.fatherJointName);
+
+        if(!oldFather || !newFather) {
+            this.standardInterpolator = new StandardInterpolator(this.frameNumber1, this.frameNumber2, this.frameArray);
+            this.standardInterpolator.load(previousJointFrame,nextJointFrame);
+            return;
+        }
+
+        if(oldFather == undefined)
+            console.log("MIOU NO OLD "+previousJointFrame.jointName);
+
+        if(newFather == undefined)
+            console.log("MIOU NO NEW "+nextJointFrame.jointName);
+
+        const oldAngleToFather = SuckMath.angleBetweenPoints(previousJointFrame.x, previousJointFrame.y, oldFather.x, oldFather.y);
+        const newAngleToFather = SuckMath.angleBetweenPoints(nextJointFrame.x, nextJointFrame.y, newFather.x, newFather.y);
+
+        this.fatherDistance1 = SuckMath.distanceBetweenPoints(previousJointFrame.x, previousJointFrame.y, oldFather.x, oldFather.y);
+        this.fatherDistance2 = SuckMath.distanceBetweenPoints(nextJointFrame.x, nextJointFrame.y, newFather.x, newFather.y);
+
+        this.movePerFrame = (oldAngleToFather - newAngleToFather) / this.frameDifference;
     }
 
-    apply(affectedJoint, frameLoop) {
-        /*
-        let currentAngle = SuckMath.angleBetweenPoints(affectedJoint.x, affectedJoint.y, affectedJoint.fatherJoint.x, affectedJoint.fatherJoint.y);
+    apply(affectedJoint, frameLoop, frameNumber) {
+
+        if(this.standardInterpolator) {
+            this.standardInterpolator.apply(affectedJoint, frameLoop, frameNumber);
+            return;
+        }
+
+        const father =  this.frameArray[frameNumber].findJoint(affectedJoint.fatherJointName);
+        let currentAngle = SuckMath.angleBetweenPoints(affectedJoint.x, affectedJoint.y, father.x, father.y);
         currentAngle -= this.movePerFrame * frameLoop;
-        const newPos = SuckMath.circleMovement(affectedJoint.fatherJoint.x, affectedJoint.fatherJoint.y, currentAngle, affectedJoint.fatherDistance);
+        const newPos = SuckMath.circleMovement(father.x, father.y, currentAngle, this.fatherDistance1);
         affectedJoint.x = newPos[0];
         affectedJoint.y = newPos[1];
-        */
     }
 }
 
 module.exports = {
 
     StandardInterpolator: StandardInterpolator,
+    AngleInterpolator: AngleInterpolator,
 
-    doInterpolation: (frameNumber1, frameNumber2, frameArray, tagFrames) => {
-        let Interpolator = null;
+    doInterpolation: (frameNumber1, frameNumber2, frameArray, tagFrames, Interpolator) => {
+
+        if(!Interpolator)
+            Interpolator = AngleInterpolator;
+            
         frameArray[frameNumber1].joints.forEach(oldJoint => {
             const newJoint = frameArray[frameNumber2].findJoint(oldJoint.jointName);
 
             if(newJoint == undefined || oldJoint == undefined)
                 return false;
 
-            Interpolator = StandardInterpolator;
+         
             const interpolation = new Interpolator(frameNumber1, frameNumber2, frameArray);
             interpolation.load(oldJoint, newJoint);
 
@@ -88,7 +118,7 @@ module.exports = {
                     affectedFrame.joints[affectedFrame.joints.indexOf(affectedFrame.findJoint(oldJoint.jointName))] = affectedJoint;
                 }
                
-                interpolation.apply(affectedJoint, loops);
+                interpolation.apply(affectedJoint, loops, i);
                 loops++;
             }
 

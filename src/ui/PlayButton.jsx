@@ -1,6 +1,7 @@
 import React from 'react';
 import Events from './Events.js';
 import EventType from '../events/EventType.js'
+import PlayByttonStyle from './css/PlayButton.css';
 
 export default class extends React.Component {
 

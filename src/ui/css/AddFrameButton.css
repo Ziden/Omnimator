@@ -1,0 +1,25 @@
+.framebutton {
+    color:green;
+    background-color: #feffb8;
+    box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.5);
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    font-weight: 700;
+    text-align: center;
+    font-size: x-large;
+    font-family: sans-serif;
+    margin-left: 10px;
+    float: left;
+    cursor: pointer;
+}
+
+.framebutton:hover {
+    background-color: #eded6a;
+}
+
+#framesMenu {
+    height: 45px;
+    margin-top: 10px;
+    float: left;
+}

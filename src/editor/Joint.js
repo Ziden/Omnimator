@@ -6,12 +6,11 @@ import EventType from '../events/EventType.js'
 import { onDragUpdate , dragConnectedJoints } from './JointFunctions.js';
 //    _\|/_      :D 
 class Joint extends Phaser.Sprite {
-
     constructor(x,y, body, name) {
         super(window.game, x, y, "joint");
         this.jointBody = body;
         this.pushJoint = this.pushJoint.bind(this);
-        this.getFatherJoint = this.getFatherJoint.bind(this);
+        this.getFatherJointStructure = this.getFatherJointStructure.bind(this);
         this.x = x;
         this.y = y;
         this.oldX = x;
@@ -26,7 +25,7 @@ class Joint extends Phaser.Sprite {
         this.addJointToPhaser.bind(this)();
     }
 
-    getFatherJoint() {
+    getFatherJointStructure() {
         if(this.jointStructure.fatherJointName) {
             return this.jointBody.jointSprites[this.jointStructure.fatherJointName].jointStructure;
         }

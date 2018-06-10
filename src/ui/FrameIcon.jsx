@@ -7,7 +7,7 @@ export default class extends React.Component {
   }
 
   render () {
-    return <div id="viewing"></div>;
+    return <div className={this.props.id}></div>;
   }
 
 }

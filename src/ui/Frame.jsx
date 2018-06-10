@@ -1,13 +1,30 @@
 import React from 'react';
-import ViewingTriangle from './ViewingTriangle.jsx' 
+import FrameIcon from './FrameIcon.jsx' 
 import Events from './Events.js'
 import EventType from '../events/EventType.js'
 
 export default class extends React.Component {
-
   constructor(props) {
     super(props);
     this.clickFrame = this.clickFrame.bind(this);
+    this.state = {
+      selected: false,
+      frametype: undefined
+    }
+    Events.on(EventType.FRAME_SELECT, this.onFrameSelect.bind(this));
+    Events.on(EventType.FRAME_CHANGETYPE, this.onFrameChangeType.bind(this));
+  }
+
+  onFrameSelect(selectedFrame) {
+    this.setState({selected : selectedFrame == this.props.id});
+  }
+
+  onFrameChangeType(e) {
+    var frameNumber = e.frameNumber;
+    if(frameNumber==this.props.id) {
+      var newType = e.newType;
+      this.setState({frametype: newType});
+    }
   }
 
   clickFrame() {
@@ -15,6 +32,12 @@ export default class extends React.Component {
   }
  
   render () {
-    return <div id={this.props.id} onClick={this.clickFrame} className="frame"> { this.props.id==0 ? <ViewingTriangle/> : null }</div>;
+    const icons = [];
+    if(this.state.selected)
+      icons.push(<FrameIcon id='viewing'/>);
+    if(this.state.frametype)
+      icons.push(<FrameIcon id={this.state.frametype}/>);
+    const renderedIcons = icons.map((Icon, i) => {return <div key={i}>{Icon}</div>});
+    return <div id={this.props.id} onClick={this.clickFrame} className="frame"> { renderedIcons }</div>;
   }
 }

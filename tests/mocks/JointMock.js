@@ -9,7 +9,6 @@ const JointMock = (name) => {
     jointMock.angleToFather = 2;
     jointMock.connectedJoints = [];
     return jointMock;
-
 }
 
 export default JointMock;

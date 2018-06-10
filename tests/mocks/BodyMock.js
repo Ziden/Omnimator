@@ -33,8 +33,8 @@ const LegFeetBody = () =>
     body.jointSprites.center.jointStructure = new JointMock('center');
     body.jointSprites.feet.fatherJointName = "leg";
     body.jointSprites.leg.fatherJointName = "center";
-    body.jointSprites.leg.jointStructure.connectedJoints = [body.jointSprites.feet.jointStructure];
-    body.jointSprites.center.jointStructure.connectedJoints = [body.jointSprites.leg.jointStructure];
+    body.jointSprites.leg.jointStructure.connectedJoints = ["feet"];
+    body.jointSprites.center.jointStructure.connectedJoints = ["leg"];
     return body;
 };
 

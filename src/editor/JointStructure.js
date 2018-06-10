@@ -1,5 +1,4 @@
 class JointStructure {
-
     constructor(joint) {
         if (joint.jointStructure) {
             this.x = joint.x;

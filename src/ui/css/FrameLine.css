@@ -1,0 +1,11 @@
+.interpolation {
+    position: absolute;
+    height: 4px;
+    margin-top: 8px;
+    transform: translate(-17%, 0%);
+    background-color: yellow;
+    width: 30px;
+    border: 1px solid #c4c575;
+    border-radius: 10px;
+    pointer-events: none;
+}

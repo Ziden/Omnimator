@@ -91,6 +91,8 @@ class Animation {
             const jointSprite = body.jointSprites[jointStructure.jointName];
             jointSprite.x = jointStructure.x;
             jointSprite.y = jointStructure.y;
+            jointSprite.oldX = jointSprite.x;
+            jointSprite.oldY = jointSprite.y;
             jointSprite.jointStructure = new JointStructure(jointStructure);
         });
     }

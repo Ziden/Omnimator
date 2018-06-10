@@ -1,6 +1,7 @@
 import React from 'react';
 import Events from './Events.js'
 import EventType from '../events/EventType.js'
+import FrameButtonStyle from './css/AddFrameButton.css'
 
 export default class extends React.Component {
 

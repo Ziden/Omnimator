@@ -5,6 +5,7 @@ import {
 } from 'react-dom'
 import AddFrameButton from './AddFrameButton.jsx'
 import PlayButton from './PlayButton.jsx'
+import PropertiesPanel from './PropertiesPanel.jsx'
 
 class ReactIndex extends React.Component {
 
@@ -13,12 +14,16 @@ class ReactIndex extends React.Component {
   }
 
   render () {
-    return <div id="frames">
-      <AddFrameButton />
-      <FramesRow 
-        ref={el => this.framesRow = el} />
-      <PlayButton/>
-    </div>;
+    return (
+      <div id="main">
+        <div id="frames">
+          <AddFrameButton />
+          <FramesRow 
+            ref={el => this.framesRow = el} />
+          <PlayButton/>
+        </div>
+      </div>
+    );
   }
 }
 

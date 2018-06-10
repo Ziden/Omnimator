@@ -1,12 +1,14 @@
 {
     "version": "0.2.0",
-    "configurations": [{
+    "configurations": [
+      
+      {
       "type": "node",
       "request": "launch",
       "name": "Launch Jest",
       "program": "${workspaceRoot}/node_modules/jest/bin/jest.js",
       "cwd": "${workspaceRoot}",
-      "args": ["--runInBand", ""],
+      "args": ["--runInBand", "testNamePatternA=Angle"],
       "runtimeArgs": [
         "--nolazy"
       ],

@@ -23,6 +23,7 @@
         "clean-webpack-plugin": "^0.1.18",
         "copy-webpack-plugin": "^4.4.1",
         "cordova": "^8.0.0",
+        "css-loader": "^0.28.11",
         "deepmerge": "^2.1.0",
         "eslint": "^4.17.0",
         "eslint-config-standard": "^10.2.1",
@@ -36,6 +37,7 @@
         "phase-2-e": "^0.2.0",
         "react": "^16.2.0",
         "react-dom": "^16.2.0",
+        "style-loader": "^0.21.0",
         "webpack": "^3.11.0"
     },
     "dependencies": {
@@ -60,8 +62,9 @@
         }
     },
     "jest": {
-        "transform": {".*": "<rootDir>/node_modules/babel-jest"},
-
+        "transform": {
+            ".*": "<rootDir>/node_modules/babel-jest"
+        },
         "moduleFileExtensions": [
             "js",
             "json",
@@ -70,13 +73,17 @@
         "moduleNameMapper": {
             "^.*[.](jpg|JPG|gif|GIF|png|PNG|less|LESS|css|CSS)$": "EmptyModule"
         },
-        "transformIgnorePatterns": ["/node_modules/"],
+        "transformIgnorePatterns": [
+            "/node_modules/"
+        ],
         "unmockedModulePathPatterns": [
             "<rootDir>/node_modules/react",
             "<rootDir>/node_modules/react-dom",
             "<rootDir>/node_modules/react-addons-test-utils",
             "<rootDir>/EmptyModule.js"
         ],
-        "setupFiles": ["jest-canvas-mock"]
+        "setupFiles": [
+            "jest-canvas-mock"
+        ]
     }
 }

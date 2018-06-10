@@ -14,15 +14,21 @@ const dragConnectedJoints = (jointSprite, x, y) => {
     });
 };
 
+const LIMIT_CIRCULAR_MOVEMENT = true;
+
 const onDragUpdate = (jointSprite, e) => {
-    if(jointSprite.jointStructure.fatherJointName) {
-        const fatherJoint = jointSprite.getFatherJoint();
+    
+    if(LIMIT_CIRCULAR_MOVEMENT && jointSprite.jointStructure.fatherJointName) {
+        const fatherJoint = jointSprite.getFatherJointStructure();
         const angle = SuckMath.angleBetweenPoints(jointSprite.x, jointSprite.y, fatherJoint.x, fatherJoint.y);
         jointSprite.angle = angle;
         const newPosition = SuckMath.circleMovement(fatherJoint.x, fatherJoint.y, angle, jointSprite.fatherDistance);
         jointSprite.x = newPosition[0];
         jointSprite.y = newPosition[1];
+        jointSprite.jointStructure.x = newPosition[0];
+        jointSprite.jointStructure.y = newPosition[1];
     }
+    
     if (jointSprite.jointStructure.connectedJoints.length > 0) {
         const differenceX = jointSprite.x - jointSprite.oldX;
         const differenceY = jointSprite.y - jointSprite.oldY;
