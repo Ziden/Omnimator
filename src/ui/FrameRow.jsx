@@ -4,7 +4,6 @@ import Events from './Events.js'
 import EventType from '../events/EventType.js';
 import ViewingTriangleStyle from './css/ViewingTriangle.css';
 import FrameLineStyle from './css/FrameLine.css';
-import FramesStyles from './css/Frames.css';
 
 export default class extends React.Component {
     constructor(props) {

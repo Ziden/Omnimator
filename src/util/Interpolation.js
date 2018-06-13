@@ -15,7 +15,6 @@ class Interpolator {
 }
 
 class StandardInterpolator extends Interpolator {
-
     constructor(frameNumber1, frameNumber2, frameArray) {
         super(frameNumber1, frameNumber2, frameArray);
     }
@@ -32,7 +31,6 @@ class StandardInterpolator extends Interpolator {
 }
 
 class AngleInterpolator extends Interpolator {
-
     constructor(frameNumber1, frameNumber2, frameArray) {
         super(frameNumber1, frameNumber2, frameArray);
     }
@@ -64,7 +62,6 @@ class AngleInterpolator extends Interpolator {
     }
 
     apply(affectedJoint, frameLoop, frameNumber) {
-
         if(this.standardInterpolator) {
             this.standardInterpolator.apply(affectedJoint, frameLoop, frameNumber);
             return;
@@ -87,14 +84,13 @@ module.exports = {
     doInterpolation: (frameNumber1, frameNumber2, frameArray, tagFrames, Interpolator) => {
 
         if(!Interpolator)
-            Interpolator = AngleInterpolator;
+            Interpolator = StandardInterpolator;
             
         frameArray[frameNumber1].joints.forEach(oldJoint => {
             const newJoint = frameArray[frameNumber2].findJoint(oldJoint.jointName);
 
             if(newJoint == undefined || oldJoint == undefined)
                 return false;
-
          
             const interpolation = new Interpolator(frameNumber1, frameNumber2, frameArray);
             interpolation.load(oldJoint, newJoint);

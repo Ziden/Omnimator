@@ -16,6 +16,7 @@ class ReactIndex extends React.Component {
   render () {
     return (
       <div id="main">
+        <PropertiesPanel/>
         <div id="frames">
           <AddFrameButton />
           <FramesRow 
