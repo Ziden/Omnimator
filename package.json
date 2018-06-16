@@ -5,7 +5,8 @@
     "author": "Gabriel Slomka",
     "main": "index.js",
     "scripts": {
-        "dev": "webpack",
+        "server": "node .\\src\\server\\main.js",
+        "dev": "webpack && node .\\src\\server\\main.js",
         "deploy": "webpack --config webpack.production.config.js",
         "cordova": "webpack --config webpack.cordova.config.js",
         "test": "jest"
@@ -34,6 +35,7 @@
         "expose-loader": "^0.7.4",
         "html-webpack-plugin": "^2.30.1",
         "jest": "^22.4.2",
+        "nodemon": "^1.17.5",
         "phase-2-e": "^0.2.0",
         "react": "^16.2.0",
         "react-dom": "^16.2.0",
@@ -46,6 +48,7 @@
         "cordova-browser": "^5.0.3",
         "cordova-ios": "^4.5.4",
         "cordova-plugin-whitelist": "^1.3.3",
+        "express": "^4.16.3",
         "gulp": "^3.9.1",
         "jest-canvas-mock": "^1.0.2",
         "phaser-ce": "^2.10.0",

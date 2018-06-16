@@ -2,7 +2,6 @@ import Events from '../ui/Events.js'
 import EventType from '../events/EventType.js'
 
 class AnimationPlayer {
-
     constructor(animation, body) {
         this.body = body;
         this.frame = 0;

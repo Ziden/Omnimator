@@ -1,7 +1,6 @@
 import JointStructure from '../editor/JointStructure.js';
 
 class Frame {
-
     constructor(jointArray) {
         this.type = 'none';
         this.joints = [];
