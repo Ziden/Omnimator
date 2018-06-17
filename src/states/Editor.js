@@ -23,6 +23,7 @@ export default class extends Phaser.State {
         this.UI = renderUI();
         this.listener = new EditorListener(this, this.animation, this.body);
         Events.fire(EventType.FRAME_ADD);
+        Events.fire(EventType.FRAME_SELECT,0);
     }
 
     render() {

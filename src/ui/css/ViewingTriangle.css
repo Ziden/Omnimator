@@ -5,5 +5,23 @@
     border-right: 10px solid transparent;
     border-top: 17px solid #0b5826;
     position: absolute;
+    animation: bounce 1s infinite alternate;
     top: -10px;
 }
+
+@keyframes bounce {
+    from {
+      transform: translateY(0px);
+    }
+    to {
+      transform: translateY(-7px);
+    }
+  }
+  @-webkit-keyframes bounce {
+    from {
+      transform: translateY(0px);
+    }
+    to {
+      transform: translateY(-7px);
+    }
+  }

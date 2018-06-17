@@ -43,3 +43,25 @@
     background: #7870c1;
     margin: 7px auto;
 }
+
+.selectedFrame {
+    animation: bounce 0.5s infinite alternate;
+    -webkit-animation: bounce 0.5s infinite alternate;
+}
+
+@keyframes bounce {
+    from {
+      transform: translateY(0px);
+    }
+    to {
+      transform: translateY(-5px);
+    }
+  }
+  @-webkit-keyframes bounce {
+    from {
+      transform: translateY(0px);
+    }
+    to {
+      transform: translateY(-5px);
+    }
+  }
