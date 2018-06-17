@@ -84,6 +84,18 @@ class EditorListener {
 
     onAddFrame(frameNumber) {
         this.animation.addEmptyFrame(this.editor.viewwingFrame);
+        if(this.animation.frameData[this.editor.viewwingFrame].type=='Interpolation') {
+            const nextKeyFrame = this.animation.getNextKeyFrame(this.editor.viewwingFrame);
+            const previousKeyFrame = this.animation.getPreviousKeyFrame(this.editor.viewwingFrame);
+    
+            if (nextKeyFrame != undefined) {
+                Interpolation.doInterpolation(this.editor.viewwingFrame-1, nextKeyFrame, this.animation.frameData, true);
+            }
+    
+            if (previousKeyFrame != undefined) {
+                Interpolation.doInterpolation(previousKeyFrame, this.editor.viewwingFrame-1, this.animation.frameData, true);
+            }
+        }
     }
 
     getCurrentFrame() {
