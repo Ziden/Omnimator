@@ -1,10 +1,10 @@
-import Events from '../ui/Events.js';
+import Events from '../events/Events';
 import EventType from '../events/EventType.js'
 import AnimationPlayer from '../editor/AnimationPlayer.js';
 import Interpolation from '../util/Interpolation.js';
+import HotKeys from './HotKeys.js';
 
 class EditorListener {
-
     constructor(editor) {
         this.editor = editor;
         this.animation = editor.animation;
@@ -57,14 +57,11 @@ class EditorListener {
     onAnimationChange() {
         this.animation.bodyToFrame(this.body, this.editor.viewwingFrame);
         const frame = this.getCurrentFrame();
-
         const nextKeyFrame = this.animation.getNextKeyFrame(this.editor.viewwingFrame);
         const previousKeyFrame = this.animation.getPreviousKeyFrame(this.editor.viewwingFrame);
-
         if (nextKeyFrame != undefined) {
             Interpolation.doInterpolation(this.editor.viewwingFrame, nextKeyFrame, this.animation.frameData, true);
         }
-
         if (previousKeyFrame != undefined) {
             Interpolation.doInterpolation(previousKeyFrame, this.editor.viewwingFrame, this.animation.frameData, true);
         }
@@ -84,16 +81,22 @@ class EditorListener {
 
     onAddFrame(frameNumber) {
         this.animation.addEmptyFrame(this.editor.viewwingFrame);
-        if(this.animation.frameData[this.editor.viewwingFrame].type=='Interpolation') {
+        let interpolationIndex = undefined;
+        if(this.getCurrentFrame().type.indexOf('Interpolator') != -1) {
+            interpolationIndex = this.editor.viewwingFrame -1;   
+        } else if(this.getCurrentFrame().type=='key') {
+            interpolationIndex = this.editor.viewwingFrame;   
+        }
+        if(interpolationIndex !== undefined) {
             const nextKeyFrame = this.animation.getNextKeyFrame(this.editor.viewwingFrame);
             const previousKeyFrame = this.animation.getPreviousKeyFrame(this.editor.viewwingFrame);
     
             if (nextKeyFrame != undefined) {
-                Interpolation.doInterpolation(this.editor.viewwingFrame-1, nextKeyFrame, this.animation.frameData, true);
+                Interpolation.doInterpolation(interpolationIndex, nextKeyFrame, this.animation.frameData, true);
             }
     
             if (previousKeyFrame != undefined) {
-                Interpolation.doInterpolation(previousKeyFrame, this.editor.viewwingFrame-1, this.animation.frameData, true);
+                Interpolation.doInterpolation(previousKeyFrame, interpolationIndex, this.animation.frameData, true);
             }
         }
     }

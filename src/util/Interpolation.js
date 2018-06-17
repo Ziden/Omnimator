@@ -1,6 +1,6 @@
 import SuckMath from './ISuckAtMath.js'
 import JointStructure from '../editor/JointStructure.js'
-import Events from '../ui/Events.js';
+import Events from '../events/Events';
 import EventType from '../events/EventType.js';
 
 class Interpolator {
@@ -101,10 +101,10 @@ module.exports = {
 
                 if(tagFrames) {
                     Events.fire(EventType.FRAME_CHANGETYPE, {
-                        newType: 'interpolation',
+                        newType: Interpolator.name,
                         frameNumber: i
                     });
-                    affectedFrame.type = 'Interpolation';
+                    affectedFrame.type = Interpolator.name;
                 }
                 
                 let affectedJoint = new JointStructure(oldJoint);

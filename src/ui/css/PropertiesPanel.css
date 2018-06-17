@@ -2,21 +2,31 @@
     color: white;
     position: absolute;
     background-color: #49904e;
-    padding-top: 6px;
-    right: 20px;
     width: 20%;
+    right: 0px;
     text-align: center;
-    top: 20px;
     box-shadow: 1px 3px 6px -1px rgba(0, 0, 0, 0.75);
+    height: calc(100% - 60px);
+}
+
+#properties-title {
+    margin-top: 5px;
+    display: flex;
+    margin-bottom: 2px;
+    line-height: 23px;
+}
+
+#properties-title strong {
+    margin-left: 20%;
 }
 
 #propertiescontent {
     background-color: white;
-    color: black;
-    margin-top: 6px;
     min-height: 50px;
     border: 1px solid #49904e;
     padding: 8px;
+    height: calc(100% - 50px);
+    color: #004805;
 }
 
 #propertiescontent div span{

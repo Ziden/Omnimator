@@ -1,4 +1,4 @@
-import Events from '../ui/Events.js';
+import Events from '../events/Events';
 import EventType from '../events/EventType.js';
 import SuckMath from '../util/ISuckAtMath.js';
 

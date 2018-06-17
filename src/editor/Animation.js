@@ -1,4 +1,4 @@
-import Events from '../ui/Events.js'
+import Events from '../events/Events'
 import Interpolation from '../util/Interpolation.js'
 import JointStructure from './JointStructure.js'
 import deepmerge from 'deepmerge' 

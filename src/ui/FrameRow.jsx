@@ -1,6 +1,6 @@
 import React from 'react';
 import Frame from './Frame.jsx'
-import Events from './Events.js'
+import Events from '../events/Events'
 import EventType from '../events/EventType.js';
 import ViewingTriangleStyle from './css/ViewingTriangle.css';
 import FrameLineStyle from './css/FrameLine.css';

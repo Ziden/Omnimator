@@ -1,10 +1,8 @@
 
 import Phaser from 'phaser'
-import Joint from '../editor/Joint.js'
 import Body from '../editor/Body.js'
 import Animation from '../editor/Animation.js'
-import AnimationPlayer from '../editor/AnimationPlayer'
-import Events from '../ui/Events.js'
+import Events from '../events/Events'
 import {
     UI,
     renderUI

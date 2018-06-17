@@ -1,9 +1,10 @@
 import React from 'react';
-import Events from './Events.js'
+import Events from '../events/Events'
 import EventType from '../events/EventType.js'
 import PropertiesPanelStyle from './css/PropertiesPanel.css';
 import JointProperties from './properties/JointProperties.jsx';
 import FrameProperties from './properties/FrameProperties.jsx';
+import Icon from './Icon.jsx';
 
 export default class extends React.Component {
 
@@ -54,19 +55,16 @@ export default class extends React.Component {
   render () {
 
     if(!this.state.visible)
-      return (<div></div>);
+      return (<div></div>); 
 
     return  (<div>
       <div id="properties">
-        <strong>{this.state.name}</strong>
-        <span className="expand" onClick={this.expand}>
-          {this.state.expanded ? '-' : '+'}
-        </span>
-        {this.state.expanded &&
+        <div id="properties-title">
+        <Icon name="lupe.png" size="25px"/><strong>Inspector</strong>
+        </div>
         <div id="propertiescontent" key={1}>
           { this.state.display }
         </div>
-        }
        </div>
        
     </div>);

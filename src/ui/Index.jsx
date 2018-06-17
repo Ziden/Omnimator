@@ -1,5 +1,6 @@
 import React from 'react';
-import FramesRow from './FrameRow.jsx';
+import FrameRow from './FrameRow.jsx';
+import Header from './Header.jsx';
 import {
   render
 } from 'react-dom'
@@ -16,14 +17,15 @@ class ReactIndex extends React.Component {
   render () {
     return (
       <div id="main">
+        <Header/>
         <PropertiesPanel/>
         <div id="frames">
           <AddFrameButton />
-          <FramesRow 
-            ref={el => this.framesRow = el} />
+          <FrameRow/>
           <PlayButton/>
         </div>
       </div>
+      
     );
   }
 }

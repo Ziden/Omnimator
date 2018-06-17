@@ -7,20 +7,19 @@ import SplashState from './states/Splash'
 import EditorState from './states/Editor.js'
 import config from './config'
 
-Phaser.Game.prototype.showDebugHeader = function(){}
-
 /*
+- Adicionar mais joints
+    - Context Menu
 
-TODO:
-- PLAY
-- SEE BACKFRAME
+- Sprites nos bones
 
 */
+Phaser.Game.prototype.showDebugHeader = function(){}
 
 class Game extends Phaser.Game {
   constructor () {
     const docElement = document.documentElement
-    const width = window.innerWidth
+    const width = window.innerWidth * 0.8;
     const height = window.innerHeight-50;
 
     window.getState = () => {

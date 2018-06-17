@@ -17,7 +17,7 @@ export default class extends React.Component {
   render () {
     const frame = this.state.frame;
     return  (<div>
-      
+      <strong>Frame</strong>
       <div className="property-row">
         <span>Number</span><span>{frame.id}</span>
       </div>

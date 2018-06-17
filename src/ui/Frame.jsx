@@ -1,5 +1,5 @@
 import React from 'react';
-import Events from './Events.js'
+import Events from '../events/Events'
 import EventType from '../events/EventType.js'
 import FramesStyles from './css/Frames.css';
 

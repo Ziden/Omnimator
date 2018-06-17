@@ -1,5 +1,5 @@
 import Phaser from 'phaser'
-import Events from '../ui/Events' 
+import Events from '../events/Events' 
 import SuckMath from '../util/ISuckAtMath.js';
 import JointStructure from './JointStructure.js';
 import EventType from '../events/EventType.js'
@@ -37,7 +37,7 @@ class Joint extends Phaser.Sprite {
         this.inputEnabled = true;
         this.input.useHandCursor=true;
         this.input.enableDrag(true);
-        this.scale.setTo(2, 2);
+        //this.scale.setTo(2, 2);
         this.events.onDragStop.add(()  => Events.fire(EventType.ANIMATION_CHANGE), window.getState());
         this.events.onInputDown.add(() => Events.fire(EventType.JOINT_CLICK, this), this);
         this.events.onInputDown.add(() => 

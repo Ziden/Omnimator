@@ -1,10 +1,6 @@
-import JointStructure from '../src/editor/JointStructure.js';
-import Frame from '../src/editor/Frame.js';
-import { equalJoints } from './TestUtils.js';
 import EditorMock from './mocks/EditorMock.js';
-import Events from '../src/ui/Events.js';
+import Events from '../src/events/Events.js';
 import EventType from '../src/events/EventType.js';
-import JointMock from './mocks/JointMock.js';
 import { LegFeetBody } from './mocks/BodyMock.js';
 
 describe("Editor Tests", () => {
