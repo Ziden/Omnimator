@@ -142,12 +142,12 @@ describe("Animation Tests", () => {
 
     test('Test Interpolation Filling Doing Correct Interpolation', () => {
         var body = new LegFeetBody();
-        animation.addEmptyFrame();
-        animation.addEmptyFrame();
+        animation.addEmptyFrame(0);
+        animation.addEmptyFrame(1);
         animation.bodyToFrame(body, 0);
         body.jointSprites.leg.x = 10;
         animation.bodyToFrame(body, 1);
-        animation.addEmptyFrame();
+        animation.addEmptyFrame(2);
         body.jointSprites.leg.x = 20;
         animation.bodyToFrame(body, 2);
         const newFrames = animation.fillNewInterpolatedFrames(1, animation.frameData);

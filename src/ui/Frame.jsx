@@ -18,11 +18,8 @@ export default class extends React.Component {
   }
 
   getFrameId() {
-    console.log(this.frameDiv);
     const frameWrapper = this.frameDiv.parentNode;
-    
     const frameId = Array.from(frameWrapper.parentNode.children).indexOf(frameWrapper);
-    console.log(frameId);
     return frameId;
   }
 
@@ -39,8 +36,7 @@ export default class extends React.Component {
   }
 
   clickFrame() {
-    console.log("Selecting frame ",this.getFrameId());
-      Events.fire(EventType.FRAME_SELECT, this.getFrameId());
+    Events.fire(EventType.FRAME_SELECT, this.getFrameId());
   }
 
   handleHover(){

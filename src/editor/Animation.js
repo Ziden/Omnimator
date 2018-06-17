@@ -6,7 +6,6 @@ import Frame from './Frame.js';
 import EventType from '../events/EventType.js';
 
 class Animation {
-
     constructor() {
         this.frameData = [];
         this.bodyToFrame = this.bodyToFrame.bind(this);
@@ -24,12 +23,14 @@ class Animation {
     }
 
     addEmptyFrame(frameIndex) {
+        if(!frameIndex)
+            frameIndex = 0;
         const lastFrame = this.frameData[frameIndex];
         let joints = undefined;
         if(lastFrame)
             joints = lastFrame.joints;
         const newFrame = new Frame(joints);
-        this.frameData.splice(frameIndex, 0, newFrame);
+        this.frameData.splice(frameIndex+1, 0, newFrame);
     }
 
     getNextKeyFrame(frameNumber) {
