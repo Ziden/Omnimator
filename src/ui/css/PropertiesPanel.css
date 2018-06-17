@@ -21,23 +21,21 @@
 
 #propertiescontent div span{
     width: 100%;
-    padding: 5px;
-    outline: 1px solid #49904e;
+    border-bottom: 1px solid #49904e;
 }
 
 #propertiescontent div span:first-child{
-    background-color: #bdf1b9;
     float: left;
 }
 
 #propertiescontent div span:not(first-child){
-    background-color: #e4e3c8;
     float: right;
 }
 
 .property-row {
     margin-top: 5px;
     display: flex;
+    text-align: left;
 }
 
 .property-container {

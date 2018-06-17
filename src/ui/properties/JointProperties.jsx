@@ -1,6 +1,5 @@
 import React from 'react';
-import Events from '../Events.js'
-import EventType from '../../events/EventType.js'
+import Icon from '../Icon.jsx';
 
 export default class extends React.Component {
 
@@ -19,19 +18,18 @@ export default class extends React.Component {
     const jointStructure = this.state.joint.jointStructure;
     const children = this.state.joint.connectedJointSprites;
     const renderedChildrenJoints = children.map((child, i) => {
-      return (<div className="childJoint" key={i}>{child.jointStructure.jointName}</div>);
+      return (
+        <div key={i} className="property-row">
+        <span><Icon name="child.jpg"/>{child.jointStructure.jointName}</span>
+      </div>
+     );
     });
     return  (<div>
       <div className="property-row">
         <span>Name</span><span>{jointStructure.jointName}</span>
       </div>
-      {children.length > 0 && <div className="property-container">
-          <div className="property-container-title">
-             Children
-          </div>
-          <div className="flex">
+      {children.length > 0 && <div>
             { renderedChildrenJoints }
-          </div>
       </div>}
    </div>);
   }

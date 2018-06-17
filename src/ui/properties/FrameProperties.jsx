@@ -1,6 +1,5 @@
 import React from 'react';
-import Events from '../Events.js'
-import EventType from '../../events/EventType.js'
+import Icon from '../Icon.jsx';
 
 export default class extends React.Component {
   constructor(props) {
@@ -25,13 +24,13 @@ export default class extends React.Component {
 
       {frame.type == 'key' && <div>
         <div className="property-row">
-          <span>Key Frame</span>
+          <span><Icon name="icon_key.png"/>Key Frame</span>
         </div>
       </div>}
 
       {frame.type == 'Interpolation' && <div>
         <div className="property-row">
-          <span>Interpolation Frame</span>
+          <span><Icon name="interpolation.jpg"/>Interpolation Frame</span>
         </div>
       </div>}
    </div>);
