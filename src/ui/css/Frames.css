@@ -44,24 +44,18 @@
     margin: 7px auto;
 }
 
-.selectedFrame {
-    animation: bounce 0.5s infinite alternate;
-    -webkit-animation: bounce 0.5s infinite alternate;
+.fall {
+    animation: risefall 1s alternate;
 }
 
-@keyframes bounce {
-    from {
+@keyframes risefall {
+    0% {
       transform: translateY(0px);
     }
-    to {
-      transform: translateY(-5px);
+    5% {
+        transform: translateY(-10px);
     }
-  }
-  @-webkit-keyframes bounce {
-    from {
-      transform: translateY(0px);
-    }
-    to {
-      transform: translateY(-5px);
+    100% {
+        transform: translateY(0px);
     }
   }

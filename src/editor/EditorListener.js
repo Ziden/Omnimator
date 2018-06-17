@@ -74,10 +74,16 @@ class EditorListener {
         this.editor.viewwingFrame = frameNumber;
         this.animation.loadFrameData(this.body, frameNumber);
         this.body.update();
+        const frame = this.animation.frameData[frameNumber];
+        frame.id = this.animation.frameData.indexOf(frame);
+        Events.fire(EventType.DISPLAY_PROPERTIES, {
+            type: 'frame',
+            property: frame
+        });
     }
 
     onAddFrame(frameNumber) {
-        this.animation.addEmptyFrame();
+        this.animation.addEmptyFrame(this.editor.viewwingFrame);
     }
 
     getCurrentFrame() {

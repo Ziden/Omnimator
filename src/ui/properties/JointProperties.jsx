@@ -25,7 +25,6 @@ export default class extends React.Component {
       <div className="property-row">
         <span>Name</span><span>{jointStructure.jointName}</span>
       </div>
-
       {children.length > 0 && <div className="property-container">
           <div className="property-container-title">
              Children

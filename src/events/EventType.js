@@ -1,5 +1,6 @@
 export default {
 
+    DISPLAY_PROPERTIES: 'onDisplayProperties',
     CLICK_NOWHERE: 'onClickNowhere',
 
     FRAME_SELECT: 'onFrameClick',

@@ -40,6 +40,8 @@ class Joint extends Phaser.Sprite {
         this.scale.setTo(2, 2);
         this.events.onDragStop.add(()  => Events.fire(EventType.ANIMATION_CHANGE), window.getState());
         this.events.onInputDown.add(() => Events.fire(EventType.JOINT_CLICK, this), this);
+        this.events.onInputDown.add(() => 
+            Events.fire(EventType.DISPLAY_PROPERTIES, {type:'joint', property: this}), this);
         this.events.onDragUpdate.add(e => { onDragUpdate(this,e); }, this);
         this.anchor.set(0.5);
     }

@@ -23,13 +23,13 @@ class Animation {
         });
     }
 
-    addEmptyFrame() {
-        const lastFrame = this.frameData[this.frameData.length-1];
+    addEmptyFrame(frameIndex) {
+        const lastFrame = this.frameData[frameIndex];
         let joints = undefined;
         if(lastFrame)
             joints = lastFrame.joints;
         const newFrame = new Frame(joints);
-        this.frameData.push(newFrame);
+        this.frameData.splice(frameIndex, 0, newFrame);
     }
 
     getNextKeyFrame(frameNumber) {
