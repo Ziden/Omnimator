@@ -17,19 +17,12 @@ class EditorListener {
         Events.on(EventType.ANIMATION_PLAY, this.onAnimationPlay.bind(this));
         Events.on(EventType.JOINT_CLICK, this.onJointClick.bind(this));
         Events.on(EventType.ANIMATION_STOP, this.onAnimationStop.bind(this));
-        if(window) {
-            window.addEventListener('mousedown', this.onWindowClick.bind(this));
-        }
+
+       
     }
 
     onJointClick(clickedJoint) {
         this.editor.highlightSprite = clickedJoint;
-    }
-
-    onWindowClick(event) {
-        if(event.target && event.target.tagName == 'CANVAS') {
-            Events.fire(EventType.CLICK_NOWHERE);
-        }
     }
 
     onAnimationPlay() {

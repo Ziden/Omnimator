@@ -25,16 +25,9 @@ export default class extends Phaser.State {
     }
 
     render() {
-
         if(this.highlightSprite) {
             window.game.debug.spriteBounds(this.highlightSprite);
         }
-
-        Object.values(this.body.jointSprites).forEach(joint => {
-            joint.linesToConnectedJoints.forEach(line => {
-                window.game.debug.geom(line);
-            });
-        })
     }
 
     update() {

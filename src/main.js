@@ -8,10 +8,12 @@ import EditorState from './states/Editor.js'
 import config from './config'
 
 /*
+- Sprites nos bones
+
+
 - Adicionar mais joints
     - Context Menu
 
-- Sprites nos bones
 
 */
 Phaser.Game.prototype.showDebugHeader = function(){}

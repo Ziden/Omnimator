@@ -12,6 +12,7 @@ export default class extends Phaser.State {
     this.load.setPreloadSprite(this.loaderBar)
 
     this.load.image('joint', 'assets/images/joint.png');
+    this.load.image('bone', 'assets/images/bone.png');
   }
 
   create () {

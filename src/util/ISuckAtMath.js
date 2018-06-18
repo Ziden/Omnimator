@@ -15,6 +15,10 @@ const ISuckAtMath = {
         return Math.degrees(ISuckAtMath.angleBetweenPoints(j1.x, j1.y, j2.x, j2.y));
     },
 
+    distanceBetweenJoints: (j1, j2) => {
+        return sqrt((j1.x-j2.x)*(j1.x-j2.x)+(j1.y-j2.y)*(j1.y-j2.y));
+    },
+
     distanceBetweenPoints: (x1, y1, x2,y2) => {
         return sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
     },

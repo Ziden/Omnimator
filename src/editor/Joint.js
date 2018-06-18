@@ -4,6 +4,7 @@ import SuckMath from '../util/ISuckAtMath.js';
 import JointStructure from './JointStructure.js';
 import EventType from '../events/EventType.js'
 import { onDragUpdate , dragConnectedJoints } from './JointFunctions.js';
+
 //    _\|/_      :D 
 class Joint extends Phaser.Sprite {
     constructor(x,y, body, name) {
@@ -16,7 +17,6 @@ class Joint extends Phaser.Sprite {
         this.oldX = x;
         this.oldY = y;
         this.fatherJointName = null;
-        this.linesToConnectedJoints = [];
         this.connectedJointSprites = [];
         const jointStructure = new JointStructure(this);
         jointStructure.sprite = this;
@@ -44,6 +44,7 @@ class Joint extends Phaser.Sprite {
             Events.fire(EventType.DISPLAY_PROPERTIES, {type:'joint', property: this}), this);
         this.events.onDragUpdate.add(e => { onDragUpdate(this,e); }, this);
         this.anchor.set(0.5);
+        this.z = 1;
     }
 
     pushJoint(x, y, name) {
@@ -52,19 +53,8 @@ class Joint extends Phaser.Sprite {
         this.connectedJointSprites.push(newJoint);
         newJoint.jointStructure.fatherJointName = this.jointStructure.jointName;
         newJoint.fatherDistance = SuckMath.distanceBetweenPoints(this.x, this.y, newJoint.x, newJoint.y);
-        const line = new Phaser.Line(newJoint.x, newJoint.y, this.x, this.y);
-        this.linesToConnectedJoints.push(line);
         return newJoint;
     }
-    
-    updateLines() {
-        this.linesToConnectedJoints.forEach((line,i) => {
-            const connectedJointName = this.jointStructure.connectedJoints[i];
-            const connectedJoint = this.connectedJointSprites[i];
-            line.setTo(connectedJoint.x, connectedJoint.y, this.jointStructure.x, this.jointStructure.y);
-        });
-    }
-
 }
 
 export default Joint;

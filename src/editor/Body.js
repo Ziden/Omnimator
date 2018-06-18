@@ -1,4 +1,7 @@
 import Joint from './Joint.js';
+import Bone from './Bone.js';
+import { addBonesToJoints } from './BoneFunctions.js';
+import { updateBones } from './BoneFunctions.js';
 
 let size = 80;
 
@@ -18,7 +21,6 @@ const size10 = size / 10;
 
 class Body {
     constructor(x, y) {
-       
         this.x = x;
         this.y = y;
         this.buildDefaultStickman = this.buildDefaultStickman.bind(this);
@@ -36,6 +38,7 @@ class Body {
         return null;
     }
 
+  
     buildDefaultStickman(x, y) {
         const jointSprites = {}
         jointSprites.central = new Joint(x, y, this, 'central');
@@ -49,12 +52,16 @@ class Body {
         jointSprites.leftFoot = jointSprites.leftLeg.pushJoint(-size20, size, 'leftFoot');
         jointSprites.rightLeg = jointSprites.central.pushJoint(size20, size, 'rightLeg');
         jointSprites.rightFoot = jointSprites.rightLeg.pushJoint(size20, size, 'rightFoot');
+        addBonesToJoints(jointSprites);
+        Object.values(jointSprites).forEach(j => { 
+            j.bringToTop() 
+        });
         return jointSprites;
     }
 
     update() {
         Object.values(this.jointSprites).forEach(j => { 
-            j.updateLines() 
+            updateBones(j);
         });
     }
 
