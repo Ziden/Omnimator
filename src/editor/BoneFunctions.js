@@ -1,6 +1,7 @@
 import Events from '../events/Events';
 import EventType from '../events/EventType.js';
-import Bone from './Bone.js';
+//import Bone from './Bone.js';
+import BoneStructure from './BoneStructure.js';
 import SuckMath from '../util/ISuckAtMath.js';
 
 const addBonesToJoint = jointSprites => {
@@ -9,18 +10,20 @@ const addBonesToJoint = jointSprites => {
         const jointBones = {};
         var connected = joint.connectedJointSprites;
         connected.forEach(connectedJoint => {
-            var bone = new Bone(joint.x, joint.y, this);
+ 
+            var boneName = connectedJoint.jointStructure.jointName;
+
+            var boneStructure = new BoneStructure(boneName);
+
             var angle = -SuckMath.angleBetweenJoints(connectedJoint, joint) + 90;
-            bone.angle = angle;
+            boneStructure.angle = angle;
             var distance = SuckMath.distanceBetweenJoints(connectedJoint, joint);
-            bone.height = distance; 
-            bone.z = 0;
-            bone.boneName = connectedJoint.jointStructure.jointName+'_bone';
-            bone.connectedJoints = [joint, connectedJoint];
-            bone.boneStructure.length = SuckMath.distanceBetweenPoints(joint.x, joint.y, connectedJoint.x, connectedJoint.y);
-            jointBones[connectedJoint.jointStructure.jointName] = bone;
-            joint.boneSprites = jointBones;
-            allBones.push(bone);
+            boneStructure.length = distance; 
+ 
+            joint.jointStructure.bones[boneName] = boneStructure;
+
+            boneStructure.connectedJoints = [joint.jointStructure, connectedJoint.jointStructure];
+            allBones.push(boneStructure);
         });
     });
     return allBones;
@@ -29,15 +32,17 @@ const addBonesToJoint = jointSprites => {
 const updateBones = joint => {
     var connected = joint.connectedJointSprites;
     connected.forEach(connectedJoint => {
-       var jointBones = joint.boneSprites;
-       if(joint.boneSprites[connectedJoint.jointStructure.jointName]) {
-           var bone = joint.boneSprites[connectedJoint.jointStructure.jointName];
-           bone.x = joint.x;
-           bone.y = joint.y;
+       var jointBones = joint.jointStructure.bones;
+       if(jointBones[connectedJoint.jointStructure.jointName]) {
+           var bone = jointBones[connectedJoint.jointStructure.jointName];
+           bone.sprite.x = joint.x;
+           bone.sprite.y = joint.y;
            var angle = -SuckMath.angleBetweenJoints(connectedJoint, joint) + 90;
            bone.angle = angle;
+           bone.sprite.angle = angle;
            var distance = SuckMath.distanceBetweenJoints(connectedJoint, joint);
-           bone.height = distance; 
+           bone.sprite.height = distance; 
+           bone.length = distance;
        }
     });
 }

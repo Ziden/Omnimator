@@ -8,6 +8,7 @@ class JointStructure {
             this.x = joint.x;
             this.y = joint.y;
         }
+        this.bones = {};
         this.connectedJoints = [];
         this.jointName = joint.jointName;
         this.fatherJointName = joint.fatherJointName;

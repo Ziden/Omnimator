@@ -38,7 +38,16 @@ class Body {
         return null;
     }
 
-  
+    addBoneSprites() {
+        this.bones.forEach(boneStructure => {
+            const boneJoint = boneStructure.connectedJoints[0];
+            var bone = new Bone(boneJoint.x, boneJoint.y, boneStructure.name);
+            bone.angle = boneStructure.angle;
+            bone.height = boneStructure.length;
+            boneStructure.sprite = bone;
+        });
+    }
+
     buildDefaultStickman(x, y) {
         const jointSprites = {}
         jointSprites.central = new Joint(x, y, this, 'central');
@@ -52,7 +61,8 @@ class Body {
         jointSprites.leftFoot = jointSprites.leftLeg.pushJoint(-size20, size, 'leftFoot');
         jointSprites.rightLeg = jointSprites.central.pushJoint(size20, size, 'rightLeg');
         jointSprites.rightFoot = jointSprites.rightLeg.pushJoint(size20, size, 'rightFoot');
-        const bones = addBonesToJoints(jointSprites);
+        this.bones = addBonesToJoints(jointSprites);
+        this.addBoneSprites();
         Object.values(jointSprites).forEach(j => { 
             j.bringToTop() 
         });

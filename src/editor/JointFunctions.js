@@ -22,11 +22,9 @@ const onDragUpdate = (jointSprite, e) => {
         const fatherJoint = jointSprite.getFatherJointStructure();
         const angle = SuckMath.angleBetweenPoints(jointSprite.x, jointSprite.y, fatherJoint.x, fatherJoint.y);
         jointSprite.angle = angle;
-        console.log(jointSprite);
-        console.log(fatherJoint);
-        console.log("asdasdasd");
+ 
         const connectionBone = jointSprite.boneSprites[fatherJoint.jointName];
-        console.log(connectionBone);
+
         const newPosition = SuckMath.circleMovement(fatherJoint.x, fatherJoint.y, angle, jointSprite.fatherDistance);
         jointSprite.x = newPosition[0];
         jointSprite.y = newPosition[1];
