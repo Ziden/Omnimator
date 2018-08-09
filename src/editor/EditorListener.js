@@ -2,6 +2,7 @@ import Events from '../events/Events';
 import EventType from '../events/EventType.js'
 import AnimationPlayer from '../editor/AnimationPlayer.js';
 import Interpolation from '../util/Interpolation.js';
+import { onDragUpdate as updateJoint } from './JointFunctions.js';
 import HotKeys from './HotKeys.js';
 
 class EditorListener {
@@ -16,13 +17,31 @@ class EditorListener {
         Events.on(EventType.FRAME_SELECT, this.onFrameClick.bind(this));
         Events.on(EventType.ANIMATION_PLAY, this.onAnimationPlay.bind(this));
         Events.on(EventType.JOINT_CLICK, this.onJointClick.bind(this));
+        Events.on(EventType.BONE_CLICK, this.onBoneClick.bind(this));
         Events.on(EventType.ANIMATION_STOP, this.onAnimationStop.bind(this));
+        Events.on(EventType.BONE_UPDATE, this.onBoneUpdate.bind(this));
+    }
 
-       
+    onBoneUpdate(boneUpdateEvent) {
+        const {
+            bone, length
+        } = boneUpdateEvent;
+        bone.height = length;
+        bone.boneStructure.length = length;
+        const connectedFurtherJoint = bone.connectedJoints[1];
+
+        connectedFurtherJoint.fatherDistance = length;
+        updateJoint(connectedFurtherJoint);
+    }
+
+    onBoneClick(clickedBone) {
+        this.editor.highlightSprite = clickedBone;
+        Events.fire(EventType.DISPLAY_PROPERTIES, {type:'bone', property: clickedBone});
     }
 
     onJointClick(clickedJoint) {
         this.editor.highlightSprite = clickedJoint;
+        Events.fire(EventType.DISPLAY_PROPERTIES, {type:'joint', property: clickedJoint});
     }
 
     onAnimationPlay() {
@@ -37,7 +56,7 @@ class EditorListener {
     onJointMove(joint) {
         this.body.update();
         const frame = this.getCurrentFrame();
-        if(frame.type!='key') {
+        if(frame.type !== 'key') {
             Events.fire(EventType.FRAME_CHANGETYPE, {
                 frameNumber:this.editor.viewwingFrame,
                 newType: 'key'

@@ -108,3 +108,13 @@ ul {
     float: right;
     cursor: pointer;
 }
+
+.image-box {
+    border: 1px solid #6ac564;
+    padding: 5px;
+    cursor: pointer;
+}
+
+#fileInput {
+    display: none;
+}

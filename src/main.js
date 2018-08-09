@@ -9,12 +9,8 @@ import config from './config'
 
 /*
 - Sprites nos bones
-
-
 - Adicionar mais joints
     - Context Menu
-
-
 */
 Phaser.Game.prototype.showDebugHeader = function(){}
 

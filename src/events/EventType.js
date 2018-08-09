@@ -13,5 +13,8 @@ export default {
     ANIMATION_PLAY: 'onAnimationPlay',
     ANIMATION_STOP: 'onAnimationStop',
     ANIMATION_CHANGE: 'onAnimationChange',
+
+    BONE_CLICK: 'onBoneClick',
+    BONE_UPDATE: 'onBoneUpdate',
     
 }

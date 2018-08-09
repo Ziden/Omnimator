@@ -10,21 +10,22 @@ class Joint extends Phaser.Sprite {
     constructor(x,y, body, name) {
         super(window.game, x, y, "joint");
         this.jointBody = body;
-        this.pushJoint = this.pushJoint.bind(this);
-        this.getFatherJointStructure = this.getFatherJointStructure.bind(this);
         this.x = x;
         this.y = y;
         this.oldX = x;
         this.oldY = y;
         this.fatherJointName = null;
         this.connectedJointSprites = [];
+        this.boneSprites = [];
         const jointStructure = new JointStructure(this);
         jointStructure.sprite = this;
         this.jointStructure = jointStructure;
         this.jointStructure.jointName = name;
+        this.pushJoint = this.pushJoint.bind(this);
+        this.getFatherJointStructure = this.getFatherJointStructure.bind(this);
         this.addJointToPhaser.bind(this)();
     }
-
+    
     getFatherJointStructure() {
         if(this.jointStructure.fatherJointName) {
             return this.jointBody.jointSprites[this.jointStructure.fatherJointName].jointStructure;
@@ -40,8 +41,6 @@ class Joint extends Phaser.Sprite {
         //this.scale.setTo(2, 2);
         this.events.onDragStop.add(()  => Events.fire(EventType.ANIMATION_CHANGE), window.getState());
         this.events.onInputDown.add(() => Events.fire(EventType.JOINT_CLICK, this), this);
-        this.events.onInputDown.add(() => 
-            Events.fire(EventType.DISPLAY_PROPERTIES, {type:'joint', property: this}), this);
         this.events.onDragUpdate.add(e => { onDragUpdate(this,e); }, this);
         this.anchor.set(0.5);
         this.z = 1;

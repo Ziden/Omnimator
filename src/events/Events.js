@@ -1,5 +1,4 @@
 class Events {
-
     constructor() {
         this.listeners = {};
         this.fire = this.fire.bind(this);

@@ -25,6 +25,7 @@ export default class extends React.Component {
      );
     });
     return  (<div>
+      <strong>Joint</strong>
       <div className="property-row">
         <span>Name</span><span>{jointStructure.jointName}</span>
       </div>

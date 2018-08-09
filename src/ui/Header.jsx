@@ -2,7 +2,7 @@ import React from 'react';
 import Events from '../events/Events';
 import EventType from '../events/EventType.js'
 import HeaderStyle from './css/HeaderStyle.css'
-;
+
 export default class extends React.Component {
   constructor(props) {
     super(props);
@@ -10,7 +10,9 @@ export default class extends React.Component {
 
   render () {
     return  <div id="header">
-               
-            </div>;
+      <div id="headerLogo">
+               Omnimator
+      </div>
+    </div>;
   }
 }

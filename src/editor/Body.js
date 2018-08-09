@@ -52,7 +52,7 @@ class Body {
         jointSprites.leftFoot = jointSprites.leftLeg.pushJoint(-size20, size, 'leftFoot');
         jointSprites.rightLeg = jointSprites.central.pushJoint(size20, size, 'rightLeg');
         jointSprites.rightFoot = jointSprites.rightLeg.pushJoint(size20, size, 'rightFoot');
-        addBonesToJoints(jointSprites);
+        const bones = addBonesToJoints(jointSprites);
         Object.values(jointSprites).forEach(j => { 
             j.bringToTop() 
         });

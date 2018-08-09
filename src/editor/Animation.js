@@ -59,14 +59,12 @@ class Animation {
             if(i==frames.length-1) {
                 break;
             }
-            for (var j = 1; j <= interpolationAmount; j++) {
-                
+            for (var j = 1; j <= interpolationAmount; j++) { 
                 var newFrame = new Frame();
                 frame.joints.forEach(joint => {
                     const newJoint = new JointStructure(joint);
                     newFrame.joints.push(newJoint);
                 });
-                
                 newFrames.push(newFrame);
             }
         }

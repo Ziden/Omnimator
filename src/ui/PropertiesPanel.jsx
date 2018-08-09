@@ -4,6 +4,7 @@ import EventType from '../events/EventType.js'
 import PropertiesPanelStyle from './css/PropertiesPanel.css';
 import JointProperties from './properties/JointProperties.jsx';
 import FrameProperties from './properties/FrameProperties.jsx';
+import BoneProperties from './properties/BoneProperties.jsx';
 import Icon from './Icon.jsx';
 
 export default class extends React.Component {
@@ -37,6 +38,12 @@ export default class extends React.Component {
         display: <FrameProperties frame={property}/>,
         visible: true,
         name: "Frame"
+      };
+    if(type === 'bone')
+      return {
+        display: <BoneProperties bone={property}/>,
+        visible: true,
+        name: "Bone"
       };
   }
 

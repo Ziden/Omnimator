@@ -1,4 +1,7 @@
 import React from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import FrameRow from './FrameRow.jsx';
 import Header from './Header.jsx';
 import {
@@ -17,6 +20,7 @@ class ReactIndex extends React.Component {
   render () {
     return (
       <div id="main">
+        <ToastContainer/>
         <Header/>
         <PropertiesPanel/>
         <div id="frames">

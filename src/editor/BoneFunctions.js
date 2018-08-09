@@ -4,6 +4,7 @@ import Bone from './Bone.js';
 import SuckMath from '../util/ISuckAtMath.js';
 
 const addBonesToJoint = jointSprites => {
+    const allBones = [];
     Object.values(jointSprites).forEach(joint => { 
         const jointBones = {};
         var connected = joint.connectedJointSprites;
@@ -14,10 +15,15 @@ const addBonesToJoint = jointSprites => {
             var distance = SuckMath.distanceBetweenJoints(connectedJoint, joint);
             bone.height = distance; 
             bone.z = 0;
+            bone.boneName = connectedJoint.jointStructure.jointName+'_bone';
+            bone.connectedJoints = [joint, connectedJoint];
+            bone.boneStructure.length = SuckMath.distanceBetweenPoints(joint.x, joint.y, connectedJoint.x, connectedJoint.y);
             jointBones[connectedJoint.jointStructure.jointName] = bone;
             joint.boneSprites = jointBones;
+            allBones.push(bone);
         });
     });
+    return allBones;
 }
 
 const updateBones = joint => {
