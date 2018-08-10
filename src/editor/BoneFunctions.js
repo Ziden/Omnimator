@@ -6,23 +6,19 @@ import SuckMath from '../util/ISuckAtMath.js';
 
 const addBonesToJoint = jointSprites => {
     const allBones = [];
-    Object.values(jointSprites).forEach(joint => { 
+    Object.values(jointSprites).forEach(jointSprite => { 
         const jointBones = {};
-        var connected = joint.connectedJointSprites;
-        connected.forEach(connectedJoint => {
- 
-            var boneName = connectedJoint.jointStructure.jointName;
-
+        var connected = jointSprite.jointStructure.connectedJoints;
+        connected.forEach(connectedJointName => {
+            const connectedJoint = jointSprites[connectedJointName].jointStructure;
+            var boneName = connectedJoint.jointName;
             var boneStructure = new BoneStructure(boneName);
-
-            var angle = -SuckMath.angleBetweenJoints(connectedJoint, joint) + 90;
+            var angle = -SuckMath.angleBetweenJoints(connectedJoint, jointSprite) + 90;
             boneStructure.angle = angle;
-            var distance = SuckMath.distanceBetweenJoints(connectedJoint, joint);
+            var distance = SuckMath.distanceBetweenJoints(connectedJoint, jointSprite);
             boneStructure.length = distance; 
- 
-            joint.jointStructure.bones[boneName] = boneStructure;
-
-            boneStructure.connectedJoints = [joint.jointStructure, connectedJoint.jointStructure];
+            jointSprite.jointStructure.bones[boneName] = boneStructure;
+            boneStructure.connectedJoints = [jointSprite.jointStructure, connectedJoint];
             allBones.push(boneStructure);
         });
     });

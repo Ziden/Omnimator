@@ -3,16 +3,19 @@ import { equalJoints, assertJointEqual } from './TestUtils.js';
 import { LegFeetBody } from './mocks/BodyMock.js';
 import * as BoneFunctions from '../src/editor/BoneFunctions';
 
-describe("Joint Tests", () => {
+describe("Bone Tests", () => {
 
-    const mockJoints = [];
+    Object.values = function(array) {
+        return Object.keys(array).map(element => {
+            return array[element];
+        });
+    }
 
     test('Test Bone Creation', () => {
-
-        BoneFunctions.addBonesToJoints(Object.keys(LegFeetBody.jointSprites));
-
-        expect(LegFeetBody.jointSprites.leg.boneSprites.lenght).toBe(1);
-        
+        const body = new LegFeetBody();
+        BoneFunctions.addBonesToJoints(body.jointSprites);
+        const legBones = body.jointSprites.leg.jointStructure.bones;
+        expect(legBones.feet).not.toBe(undefined);
     });
 
 });

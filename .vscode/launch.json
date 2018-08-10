@@ -8,7 +8,7 @@
       "name": "Launch Jest",
       "program": "${workspaceRoot}/node_modules/jest/bin/jest.js",
       "cwd": "${workspaceRoot}",
-      "args": ["--runInBand", "testNamePatternA=Angle"],
+      "args": ["--runInBand"],
       "runtimeArgs": [
         "--nolazy"
       ],
